@@ -1,0 +1,115 @@
+<html>
+<head>
+	<title> 
+	test
+	</title>
+	<style>
+		#inp
+		{
+			height:50px;
+			width:300px;
+			margin-left:200px;
+			margin-top:50px;
+		}
+		#butt
+		{
+			height:50px;
+			width:100px;
+			margin-left:300px;
+			margin-top:50px;
+
+		}
+		#imbg
+		{
+			display:none;
+		}
+.header {
+  background-color:#020224;
+  padding: 30px 40px;
+  color: white;
+  text-align: center;
+  border-radius:10px;
+}
+.head
+{
+	display:inline-block;
+}
+input {
+  width: 60%;
+  padding: 10px;
+  font-size: 16px;
+  margin: 20px;
+}
+#add
+{
+	margin-left:350px;
+	padding:10px;
+}
+ul li:nth-child(even) {
+  background: #f9f9f9;
+}
+
+
+	</style>
+</head>
+<body>
+	<div class="header">
+     <div class="head">
+	<input type="text" placeholder=" Search your hero here.." id='inp' ></div>
+	<div class="head"><button type="button" id="butt" onclick="myfunction()" >Get Image </button></div>
+    <div class="head"><form action="addlist.html">
+    		<button type="submit" onclick="passvalue()" id="add">Add to Favourite</button>
+    </form>
+    </div>
+</div>
+    	<form action="refer.html">
+                <button type="submit" onclick="passvalues()" id="imbg" style="margin: 50px auto;padding:0 ;border-radius:20px;"><img id="hero" ></button>
+        </form>
+
+</div>
+	<script>
+		function myfunction()
+		{
+		var input1 = document.getElementById('inp').value;
+		var api="https://www.superheroapi.com/api.php/699959980765179/search/";
+		var sum = api + input1 ;
+		var request = new XMLHttpRequest();
+		request.open('GET', sum, true);
+		request.onload = function () {
+            var data = JSON.parse(request.response);
+            var imageurl=data.results[0].image.url;
+            
+            document.getElementById("hero").setAttribute("src",imageurl);
+            document.getElementById("hero").style.height="400px";
+            document.getElementById("hero").style.width="400px";
+            document.getElementById("imbg").style.display='block';
+            document.getElementById("hero").style.borderRadius="20px";
+
+
+
+
+	};
+	request.send();
+}
+function passvalues()
+{
+  		var input2 = document.getElementById('inp').value;
+		var apii="https://www.superheroapi.com/api.php/699959980765179/search/";
+		var sum2 = apii + input2 ;
+		localStorage.setItem("textvalue",sum2);
+        return false;
+   
+}
+function passvalue()
+{
+  		var input3= document.getElementById('inp').value;
+		localStorage.setItem("textvalue",input3);
+        return false;
+   
+}
+
+
+
+</script>
+
+</body>

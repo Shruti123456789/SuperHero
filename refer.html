@@ -1,0 +1,84 @@
+<html>
+<head>
+	<title>refer</title>
+	<style>
+		#container
+		{
+			margin:50px;
+			background-color:lightgreen;
+			border:4px solid black;
+			padding:50px;
+            background-color:#020224;
+            color: white;
+            border-radius:10px;
+
+		}
+		h1
+		{
+			text-align: center;
+		}
+		.line1
+		{
+			display:inline-block;
+		}
+		.line2
+		{
+			display:inline-block;
+			vertical-align: top;
+			margin-left:300px;
+			margin-top:50px;
+		}
+	</style>
+</head>
+<body>
+	<div id="container">
+	<h1 >SUPERHERO DETAILS</h1>
+	<div class="line1">
+	<p id="content"></p>
+    </div>
+    <div class="line2">
+	<img id="hero"></div>
+<script>
+	var sum=localStorage.getItem("textvalue");
+	var request = new XMLHttpRequest();
+	request.open('GET', sum, true);
+	request.onload = function () {
+            var data = JSON.parse(request.response);
+            //var pow13=data.results[0].biography.aliases[0];
+            //var pow14=data.results[0].biography.aliases[1];
+            var name= data.results[0].name;
+            var pow=data.results[0].powerstats.intelligence;
+            var pow2=data.results[0].powerstats.speed;
+            var pow3=data.results[0].powerstats.strength;
+            var pow4=data.results[0].powerstats.durability;
+            var pow5=data.results[0].powerstats.power;
+            var pow6=data.results[0].powerstats.combat;
+            var pow11=data.results[0].biography.publisher;
+            var pow12=data.results[0].biography.alignment;
+            var pow10=data.results[0].biography["first-appearance"];
+            var pow7=data.results[0].biography["full-name"];
+            var pow8=data.results[0].biography["alter-egos"];
+            var pow9=data.results[0].biography["place-of-birth"];
+            var bio=data.results[0].biography;
+            var imageurl=data.results[0].image.url;
+            document.getElementById("hero").setAttribute("src",imageurl);
+            document.getElementById("hero").style.height="500px";
+            document.getElementById("hero").style.width="400px";
+            document.getElementById("hero").style.borderRadius="20px";
+
+
+            document.getElementById("content").innerHTML="NAME:" +'&nbsp &nbsp &nbsp &nbsp'+name+"<br>"+"Intelligence:"+'&nbsp &nbsp &nbsp &nbsp'+pow+"<br>"+"Speed:"+'&nbsp &nbsp &nbsp &nbsp'+pow2+"<br>"+"Strength:"+'&nbsp &nbsp &nbsp &nbsp'+pow3+"<br>"+"Durability:"+'&nbsp &nbsp &nbsp &nbsp'+pow4+"<br>"+"Power:"+'&nbsp &nbsp &nbsp &nbsp'+pow5+"<br>"+"Combat:"+'&nbsp &nbsp &nbsp &nbsp'+pow6+"<br>"+"Publisher:"+'&nbsp &nbsp &nbsp &nbsp'+pow11+"<br>"+"Allignment:"+pow12+"<br>"+"First-appearance:"+pow10+"<br>"+"Fullname:"+'&nbsp &nbsp &nbsp &nbsp'+pow7+"<br>"+"Alter-egos:"+'&nbsp &nbsp &nbsp &nbsp'+pow8+"<br>"+"Place-of-birth:"+'&nbsp &nbsp &nbsp &nbsp'+pow9;
+            
+          
+            document.getElementById("content").style.fontSize="x-large";
+            document.getElementById("content").style.lineHeight="2.0";
+            document.getElementById("content").style.fontWeight="700";
+            document.getElementById("content").style.fontStyle="italic";
+
+
+
+	};
+	request.send();
+
+	</script>
+	</body>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>ADD to Favourites</title>
+	<style>
+
+.close {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 12px 16px 12px 16px;
+}
+ul li {
+  cursor: pointer;
+  position: relative;
+  padding: 12px 8px 12px 40px;
+  list-style-type: none;
+  background: #eee;
+  font-size: 18px;
+  transition: 0.2s;
+  border-radius:10px;
+  
+}
+ul li:nth-child(even) {
+  background: #f9f9f9;
+}
+h1
+{
+	text-align:center;
+}
+body
+{
+	margin:30px;
+}
+
+	</style>
+</head>
+<body>
+	<h1> FAVOURITE LIST</h1>
+	<ul id="mylist">
+		<li>Batman
+		</li>
+		<li>FireBird</li>
+		<li>superman</li>
+	</ul>
+
+	</ul>
+	<p id="pa"></p>
+	<script>
+	var sum=localStorage.getItem("textvalue");
+	var node = document.createElement("li");                 // Create a <li> node
+    var textnode = document.createTextNode(sum);         // Create a text node
+    node.appendChild(textnode);                            // Append the text to <li>
+    document.getElementById("mylist").appendChild(node);
+    var myNode = document.getElementsByTagName("LI");
+     var i;
+    for (i = 0; i < myNode.length; i++) {
+     var span = document.createElement("SPAN");
+     var txt = document.createTextNode("\u00D7");
+     span.className = "close";
+     span.appendChild(txt);
+     myNode[i].appendChild(span);
+    }
+    var close = document.getElementsByClassName("close");
+     var i;
+     for (i = 0; i < close.length; i++) {
+       close[i].onclick = function() {
+         var div = this.parentElement;
+          div.style.display = "none";
+      }
+}
+
+
+	</script>
+
+</body>
+</html>
